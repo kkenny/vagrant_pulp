@@ -40,8 +40,18 @@ knife configure --admin-client-key /root/.chef/chef-admin.pem --admin-client-nam
 
 knife ssl fetch
 
+databag_path='/root/src/darkstar-chef/databags'
 cookbook_path='/root/src/darkstar-chef/cookbooks'
 
 for cb in `ls -1 ${cookbook_path}/`; do
   cd ${cookbook_path}/${cb}; berks install; berks upload
 done
+
+for databag in `ls -1 ${databag_path}/`; do
+  cd ${databag_path}/${databag} 
+  knife data bag create $databag;
+  for object in `ls -1`; do
+    knife data bag from file $databag ${databag_path}/${databag}/${object}
+  done
+done
+  
