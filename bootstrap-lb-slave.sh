@@ -2,9 +2,9 @@
 
 [[ ! -d /etc/chef ]] && mkdir /etc/chef
 
-echo '10.0.0.3 chef chef' >> /etc/hosts
+echo '10.0.0.2 chef chef' >> /etc/hosts
 
-wget http://10.0.0.3:800/darkstar-validator.pem -O /etc/chef/darkstar-validator.pem
+wget http://10.0.0.2:800/darkstar-validator.pem -O /etc/chef/darkstar-validator.pem
 
 # Install chef
 curl -L https://omnitruck.chef.io/install.sh | bash || error_exit 'could not install chef'
@@ -13,8 +13,7 @@ curl -L https://omnitruck.chef.io/install.sh | bash || error_exit 'could not ins
 cat > "/etc/chef/first-boot.json" << EOF
 {
    "run_list" :[
-   "recipe[base]",
-   "recipe[pulp-server::main-master]"
+   "recipe[lb_slave]"
    ]
 }
 EOF

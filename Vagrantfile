@@ -61,14 +61,14 @@ Vagrant.configure("2") do |config|
 #    cl1.vm.provision "shell", path: "bootstrap-web.sh"
   end
 
-  config.vm.define "client-01" do |cl2|
+  config.vm.define "client-02" do |cl2|
     cl2.vm.network "private_network", ip: "10.0.0.9", netmask: "255.255.255.0"
     cl2.vm.hostname = "client-02"
     cl2.vm.box = "centos/7"
 #    cl1.vm.provision "shell", path: "bootstrap-web.sh"
   end
 
-  config.vm.define "lb2", autostart: false do |lb2|
+  config.vm.define "lb2" do |lb2|
     lb2.vm.network "private_network", ip: "10.0.0.5", netmask: "255.255.255.0"
     lb2.vm.hostname = "lb2"
     lb2.vm.box = "centos/7"
