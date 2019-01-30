@@ -14,7 +14,7 @@ cat > "/etc/chef/first-boot.json" << EOF
 {
    "run_list" :[
    "recipe[base]",
-   "recipe[pulp-mirror::main-master]"
+   "recipe[pulp-server::main-secondary]"
    ]
 }
 EOF

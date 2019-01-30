@@ -32,14 +32,14 @@ Vagrant.configure("2") do |config|
     pm1.vm.provision "shell", path: "bootstrap-pulp-master.sh"
   end
 
-  config.vm.define "pulp-secondary-01" do |ps1|
+  config.vm.define "pulp-secondary-01", autostart: false do |ps1|
     ps1.vm.network "private_network", ip: "10.0.0.6", netmask: "255.255.255.0"
     ps1.vm.hostname = "pulp-secondary-01"
     ps1.vm.box = "centos/7"
 #    ps1.vm.provision "shell", path: "bootstrap-web.sh"
   end
 
-  config.vm.define "lb1" do |lb1|
+  config.vm.define "lb1", autostart: false do |lb1|
     lb1.vm.network "private_network", ip: "10.0.0.4", netmask: "255.255.255.0"
     lb1.vm.network "forwarded_port", guest: 80, host: 8080
     lb1.vm.hostname = "lb1"
@@ -47,28 +47,28 @@ Vagrant.configure("2") do |config|
 #    lb1.vm.provision "shell", path: "bootstrap-lb-master.sh"
   end
 
-  config.vm.define "pulp-secondary-02" do |ps2|
+  config.vm.define "pulp-secondary-02", autostart: false do |ps2|
     ps2.vm.network "private_network", ip: "10.0.0.7", netmask: "255.255.255.0"
     ps2.vm.hostname = "pulp-secondary-02"
     ps2.vm.box = "centos/7"
 #    ps2.vm.provision "shell", path: "bootstrap-web.sh"
   end
 
-  config.vm.define "client-01" do |cl1|
+  config.vm.define "client-01", autostart: false do |cl1|
     cl1.vm.network "private_network", ip: "10.0.0.8", netmask: "255.255.255.0"
     cl1.vm.hostname = "client-01"
     cl1.vm.box = "centos/7"
 #    cl1.vm.provision "shell", path: "bootstrap-web.sh"
   end
 
-  config.vm.define "client-02" do |cl2|
+  config.vm.define "client-02", autostart: false do |cl2|
     cl2.vm.network "private_network", ip: "10.0.0.9", netmask: "255.255.255.0"
     cl2.vm.hostname = "client-02"
     cl2.vm.box = "centos/7"
 #    cl1.vm.provision "shell", path: "bootstrap-web.sh"
   end
 
-  config.vm.define "lb2" do |lb2|
+  config.vm.define "lb2", autostart: false do |lb2|
     lb2.vm.network "private_network", ip: "10.0.0.5", netmask: "255.255.255.0"
     lb2.vm.hostname = "lb2"
     lb2.vm.box = "centos/7"
