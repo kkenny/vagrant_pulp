@@ -32,11 +32,11 @@ Vagrant.configure("2") do |config|
     pm1.vm.provision "shell", path: "bootstrap-pulp-master.sh"
   end
 
-  config.vm.define "pulp-secondary-01", autostart: false do |ps1|
+  config.vm.define "pulp-secondary-01", autostart: true do |ps1|
     ps1.vm.network "private_network", ip: "10.0.0.6", netmask: "255.255.255.0"
     ps1.vm.hostname = "pulp-secondary-01"
     ps1.vm.box = "centos/7"
-#    ps1.vm.provision "shell", path: "bootstrap-web.sh"
+    ps1.vm.provision "shell", path: "bootstrap-pulp-main-secondary.sh"
   end
 
   config.vm.define "lb1", autostart: false do |lb1|
